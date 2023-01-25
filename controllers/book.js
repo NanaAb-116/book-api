@@ -15,10 +15,10 @@ const addBook = asyncWrapper(async (req, res) => {
 });
 
 const getBook = asyncWrapper(async (req, res, next) => {
-  const { id: bookID } = req.params;
-  const book = await Book.findOne({ _id: bookID });
+  const { author } = req.params;
+  const book = await Book.find({ author });
   if (!book) {
-    return next(createCustomError(`No book with id : ${bookID}`, 404));
+    return next(createCustomError(`No book with author : ${author}`, 404));
   }
   res.status(200).json({ book });
 });
@@ -27,7 +27,7 @@ const deleteBook = asyncWrapper(async (req, res) => {
   const { id: bookID } = req.params;
   const book = await Book.findByIdAndDelete({ _id: bookID });
   if (!book) {
-    return next(createCustomError(`No book with id : ${bookID}`, 404));
+    return next(createCustomError(`No book with id : ${{ _id: bookID }}`, 404));
   }
   res.status(200).json({ book: null, status: "book deleted success" });
 });
