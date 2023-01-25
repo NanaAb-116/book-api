@@ -3,7 +3,10 @@ const asyncWrapper = require("../middleware/asyncWrapper");
 const { createCustomError } = require("../errors/custom-error");
 
 const getAllBooks = asyncWrapper(async (req, res) => {
-  const books = await Book.find({});
+  const books = await Book.find({}).populate({
+    path: "author",
+    select: "name email county",
+  });
   res
     .status(200)
     .json({ success: true, data: { books, nbHits: books.length } });

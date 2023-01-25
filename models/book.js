@@ -17,8 +17,13 @@ const BookSchema = new mongoose.Schema(
       required: [true, "Must provide description"],
       trim: true,
     },
+    // author: {
+    //   type: mongoose.Schema.ObjectId,
+    //   ref: "Author",
+    //   required: true,
+    // },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Books", BookSchema);
+module.exports = mongoose.model("Book", BookSchema);

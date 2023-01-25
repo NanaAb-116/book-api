@@ -10,8 +10,14 @@ const {
   deleteBook,
 } = require("../controllers/book");
 
-router.route("/").get(getAllBooks).post(addBook);
-router.route("/:author").get(getBook);
-router.route("/:id").patch(updateBook).delete(deleteBook);
+router
+  .route("/")
+  .get(authMiddleware, getAllBooks)
+  .post(authMiddleware, addBook);
+router.route("/:author").get(authMiddleware, getBook);
+router
+  .route("/:id")
+  .patch(authMiddleware, updateBook)
+  .delete(authMiddleware, deleteBook);
 
 module.exports = router;
