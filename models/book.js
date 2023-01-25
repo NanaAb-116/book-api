@@ -17,11 +17,11 @@ const BookSchema = new mongoose.Schema(
       required: [true, "Must provide description"],
       trim: true,
     },
-    // author: {
-    //   type: mongoose.Schema.ObjectId,
-    //   ref: "Author",
-    //   required: true,
-    // },
+    bookAuthor: {
+      type: mongoose.Types.ObjectId,
+      ref: "Author",
+      // required: true,
+    },
   },
   { timestamps: true }
 );

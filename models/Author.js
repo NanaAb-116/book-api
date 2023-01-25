@@ -19,7 +19,11 @@ const AuthorSchema = new mongoose.Schema({
   country: {
     type: String,
     required: [true, "Please provide country"],
-    minlength: 6,
+  },
+  books: {
+    type: mongoose.Types.ObjectId,
+    ref: "Book",
+    // required: true,
   },
 });
 

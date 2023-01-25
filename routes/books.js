@@ -9,6 +9,9 @@ const {
   updateBook,
   deleteBook,
 } = require("../controllers/book");
+const { getAuthors } = require("../controllers/authorController");
+
+router.route("/authors").get(getAuthors);
 
 router
   .route("/")
